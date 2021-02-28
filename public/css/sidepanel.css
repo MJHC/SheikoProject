@@ -1,0 +1,34 @@
+#sidePanel{
+  height: 100vh;
+  width: 15%;
+  background-image: linear-gradient(0deg, #00ff6e, #00fff7);
+  text-align: center;
+}
+
+.user{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-image: url('https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png');
+  background-size: 90px 90px;
+  background-position:center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+li {
+  padding: 5px;
+  font-size: 20px;
+}
+
+li a{
+  color: white;
+  font-weight: 900;
+  text-shadow:1px 1px 5px black;
+
+}
+
+li a:hover{
+  color: yellow;
+}
