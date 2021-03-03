@@ -1,21 +1,24 @@
-<div class="wrapper">
-  <div class="workout-content floatleft" id="doing">
-    <h2>Doing</h2>
-    <ul id="workout"></ul>
-  </div>
-
-  <div class="workout-details floatleft">
-    <h1>HELLO WORLD!</h1>
-    <h1>KG</h1>
-    <h1>Do 1 set of something</h1>
-    <button>Next</button>
-    <button>Quit</button>
-  </div>
 
 
-  <div class="workout-content floatleft" id="done">
-    <h2>Done</h2>
+  <div class="selector"><button id="doing">Doing</button><button id="done">Done</button></div>
+  <div class="workout-content">
+    <div id="doing-content">
+      <h2>Doing</h2>
+      <ul id="workout"></ul>
+    </div>
+
+    <div id="done-content">
+      <h2>Done</h2>
+      <ul id="workout-done"></ul>
+    </div>
   </div>
-</div>
+
+  <div class="controlPanel">
+    <h1 id="current-lift">Bench press</h1>
+    <h1 id="current-lift-KG">60 KG</h1>
+    <h1 id="current-lift-SR">Do 1 set of 4 reps</h1>
+    <button class="nextBtn">Next</button><br>
+    <button class="quitBtn">Quit</button>
+  </div>
 
 <script src="js/script.js"></script>

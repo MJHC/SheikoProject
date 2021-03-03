@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%- include('../partials/header.ejs')%>
+  <%- include('../partials/header.ejs') %>
     <title><%- title %></title>
 </head>
 
 <body>
-  <%- include('../partials/sidebar.ejs')%>   
-  <div id="mainPanel" class="floatright">
-    <div id="window">
-      <div id="bar"><p id="title"><%- title %></p></div>
-      <div id="page-content">
-        <%- body %>
-      </div>
+  <%- include('../partials/sidebar.ejs')%>
+  
+  <div class="test">
+
+    <div class="window"><div id="bar"><p id="title"><%- title %></p></div>
+
+      <%- body%>
+
     </div>
-</div>
+
+  </div>
+  
+  <script src="js/test.js"></script>
 </body>
 
 </html>

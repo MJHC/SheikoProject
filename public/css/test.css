@@ -1,0 +1,70 @@
+.workout-content{
+  height: 40%;
+  width: 95%;
+  background-color: darkgrey;
+  overflow: auto;
+  text-align: center;
+  margin: 0 auto 0 auto;
+}
+
+.selector{
+  padding-top: 10px;
+  margin-top: 20px;
+  margin: 0 auto 0 auto;
+  width: 95%;
+}
+.selector button{ width: 50%; }
+
+#done-content{ display: none;}
+
+.controlPanel{
+  width: 100%;
+  height: fit-content;
+  text-align: center;
+}
+
+#current-lift{
+  color: white;
+  font-weight: 400;
+}
+
+
+#current-lift-KG{
+  color: #00a8ff;
+  font-size: 60px;
+  font-weight: 400;
+}
+
+#current-lift-SR{
+  color: white;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.nextBtn{
+  margin-top: 20px;
+  width: 50%;
+  height: 65px;
+  font-size: 30px;
+  background-color: #00ff6e;
+  color: white;
+  border-radius: 6px;
+  border: none;
+}
+
+.quitBtn{
+  margin-top: 20px;
+  width: 25%;
+  height: 35px;
+  font-size: 20px;
+  background-color: red;
+  color: white;
+  border-radius: 6px;
+  border: none;
+}
+
+/*
+#current-lift-SR
+#nextBtn
+#quitBtn
+*/

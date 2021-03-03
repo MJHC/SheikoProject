@@ -1,4 +1,24 @@
+const doneTab = document.getElementById("done");
+const doingTab = document.getElementById("doing");
+const doingContent = document.getElementById("doing-content");
+const doneContent = document.getElementById("done-content");
+let done = false;
 
+doneTab.addEventListener('click', ()=>{
+  if(!done){
+    doneContent.style.display = "block";
+    doingContent.style.display = "none";
+    done = true;
+  }
+});
+
+doingTab.addEventListener('click', ()=>{
+  if(done){
+    doneContent.style.display = "none";
+    doingContent.style.display = "block";
+    done = false;
+  }
+});
 
 document.addEventListener('DOMContentLoaded', getXML);
 

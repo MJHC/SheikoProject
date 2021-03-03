@@ -2,50 +2,50 @@
   margin: 0;
   padding: 0;
   font-family: Calibri, sans-serif;
-  text-decoration: none;
   color: black;
+  text-decoration: none;
+  list-style-type:none;
 }
 
 body{
   background-color: #23263d;
 }
 
-ul{
-  list-style-type: none;
+.test{
+  float:left;
+  width: 85%;
+  height: 100vh;
 }
 
-.floatleft {
-  float: left;
-}
+.window{
+  width: 95%;
+  height: 95%;
+  background-color: #3b3d53;
 
-.floatright {
-  float: right;
-}
-
-.clearboth {
-  clear: both;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 5px;
-}
-  
-  /* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
   border-radius: 6px;
-}
-   
-  /* Handle */
-::-webkit-scrollbar-thumb {
-  background: #23263d; 
-  border-radius: 6px;
-}
-  
-  /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(94, 94, 94); 
+  box-shadow: 2px 2px 6px black;
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 1920px;
+  max-height: 1080px;
 }
 
+#bar{
+  height: 50px;
+  width: 100%;
+  background-color: #00a8ff;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
+}
+
+#title{
+  margin-left: 10px;
+  padding-top: 5px;
+  color: white;
+  font-size: 32px;
+}
 
