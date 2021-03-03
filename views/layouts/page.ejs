@@ -1,36 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <%- include('../partials/header.ejs')%>
     <title><%- title %></title>
-    <link href="css/normal.css" type="text/css" rel="stylesheet">
-    <link href="css/page.css" type="text/css" rel="stylesheet">
-    <link href="css/sidepanel.css" type="text/css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Spartan:400,500&display=swap" rel="stylesheet">
-
-    <link rel="icon" href="images/favicon.png">
-
-
 </head>
 
 <body>
-  <div id="sidePanel" class="floatleft">
-    <div class="user"></div>
-    <ul>
-      <li><a href="/workout">workout</a></li>
-      <li><a href="/settings">settings</a></li>
-      <li>...</li>
-    </ul>
-  </div>
-    <div id="mainPanel" class="floatright">
-      <div id="window">
-        <div id="bar"><p id="title"><%- title %></p></div>
-        <div id="page-content">
-          <%- body %>
-        </div>
+  <%- include('../partials/sidebar.ejs')%>   
+  <div id="mainPanel" class="floatright">
+    <div id="window">
+      <div id="bar"><p id="title"><%- title %></p></div>
+      <div id="page-content">
+        <%- body %>
       </div>
-  </div>
+    </div>
+</div>
 </body>
 
 </html>

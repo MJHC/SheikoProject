@@ -11,8 +11,8 @@
 }
 
 #window{
-  height: 90%;
-  width: 92%;
+  height: fit-content;
+  width: fit-content;
   background-color: #3b3d53;
 
   border-radius: 6px;

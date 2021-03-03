@@ -9,8 +9,8 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-image: url('https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png');
-  background-size: 90px 90px;
+  background-image: url('../images/favicon.png');
+  background-size: 70px 70px;
   background-position:center;
   margin-left: auto;
   margin-right: auto;
@@ -31,4 +31,31 @@ li a{
 
 li a:hover{
   color: yellow;
+}
+
+#arrow{
+  width: 30px;
+  height: 30px;
+  background-color: blue;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+@media screen and (orientation: portrait){
+  #sidePanel{
+
+    height: 10vh;
+    text-align: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  #arrow{
+    display: block;
+  }
+
 }
