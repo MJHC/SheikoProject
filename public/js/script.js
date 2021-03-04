@@ -1,6 +1,10 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
+const bmax = parseInt(urlParams.get('bmax'));
+const smax = parseInt(urlParams.get('smax'));
+const dmax = parseInt(urlParams.get('dmax'));
+
 const doneTab = document.getElementById("done");
 const doingTab = document.getElementById("doing");
 const doingContent = document.getElementById("doing-content");
@@ -45,27 +49,38 @@ function displayContent(xml){
   const day = week.childNodes[d];              //day
   const exercises = day.childNodes;
 
+  let last = "ere";
+
   console.log(week.childNodes);
 
   for(let i = 0; i < exercises.length; i++){
     if(exercises[i].tagName){
       const sets = exercises[i].childNodes;
-      generateExercise(exercises[i], false);
+      generateExercise(exercises[i], false, last);
+      last = exercises[i].tagName;
 
       for(let j = 0; j < sets.length; j++)
         if(sets[j].tagName)
-          generateExercise(sets[j], true);
+          generateExercise(sets[j], true, last);
     }
   }
 }
 
-function generateExercise(item, SR){
+function generateExercise(item, SR, last){
   const list = document.getElementById('workout');
   const li = document.createElement('li');
-  if(!SR)
+
+  if(!SR){
     li.textContent = convertExercise(item);
-  else
-    li.textContent = item.textContent;  
+  } else{
+    const string = item.textContent;
+    let arr = string.split("x");
+    arr[2] = parseInt(arr[2]);
+    console.log(arr);
+
+    li.textContent = `${arr[0]} Sets ${arr[1]} Reps ${calcExercise(arr[2], last)} KG`;  
+
+  }
   list.appendChild(li);
 }
 
@@ -96,5 +111,23 @@ function convertExercise(name){
     case "LE":        return "Leg Extensions"; // 5x10
     case "Comp":      return "Competition Day!";
     default:          return name.tagName;
+  }
+}
+
+function calcExercise(arr, last){
+  switch(last){
+    case "Bench": 
+      if(bmax)
+        return (arr/100)*bmax;
+      return arr;
+    case "Squat": 
+      if(smax)
+        return (arr/100)*smax;
+      return arr;
+    case "DL":    
+      if(dmax)
+        return (arr/100)*dmax;
+      return arr;
+    default: return "error";
   }
 }

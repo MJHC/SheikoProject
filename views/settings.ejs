@@ -1,36 +1,42 @@
-﻿<h1>this is the settings page</h1>
-<form action="/workout" method="GET">
-  <select name="program" id="programs">
-  </select>
+﻿<!--<h1>this is the settings page</h1>-->
+<div class="program-selection">
+  <form action="/workout" method="GET">
+    <select disabled  >
+      <option>Sheiko</option>
+    </select>
 
-  <select name="week" id="weeks">
-    <option value="1">Week 1</option>
-    <option value="3">Week 2</option>
-    <option value="5">Week 3</option>
-    <option value="7">Week 4</option>
-  </select>
+    <select name="program" id="programs">
+    </select>
+    
+    <select name="week" id="weeks">
+      <option value="1">Week 1</option>
+      <option value="3">Week 2</option>
+      <option value="5">Week 3</option>
+      <option value="7">Week 4</option>
+    </select>
 
-  <select name="day" id="days">
-    <option value="1">Day 1</option>
-    <option value="3">Day 2</option>
-    <option value="5">Day 3</option>
-  </select>
+    <select name="day" id="days">
+      <option value="1">Day 1</option>
+      <option value="3">Day 2</option>
+      <option value="5">Day 3</option>
+    </select><br>
 
-  <input type="checkbox" id="secondary" name="secondaryEx">
-  <label for="secondary">Secondary exercises</label><br>
+    <input type="checkbox" id="secondary" name="secondaryEx">
+    <label for="secondary">Secondary exercises</label><br>
 
-  <label for="bmax">Max bench press</label>
-  <input type="text" id="benchmax" name="bmax" placeholder="100"><br>
+    <div class="personal">
+      <label for="bmax">Max bench press</label>
+      <input type="text" id="benchmax" name="bmax" placeholder="100"><br>
 
-  <label for="smax">Max squat</label>
-  <input type="text" id="squatmax" name="smax" placeholder="100"><br>
+      <label for="smax">Max squat</label>
+      <input type="text" id="squatmax" name="smax" placeholder="100"><br>
 
-  <label for="dmax">Max deadlift</label>
-  <input type="text" id="deadmax" name="dmax" placeholder="100"><br>
-
-  <button type="submit">Update settings</button>
-</form>
-
+      <label for="dmax">Max deadlift</label>
+      <input type="text" id="deadmax" name="dmax" placeholder="100"><br>
+    </div>
+    <button class="upset" type="submit">Update settings</button>
+  </form>
+</div>
 <script>
 
 getJSON();
@@ -52,6 +58,5 @@ function test(data){
   }
 
 }
-
 
 </script>

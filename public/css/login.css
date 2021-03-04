@@ -106,11 +106,3 @@ input[type=text], input[type=password]{
     margin-top:26px;
 }
 
-input:focus{
-    outline: none;
-}
-
-::placeholder{
-    color: #696c8d;
-    opacity: 1;
-}
