@@ -1,27 +1,85 @@
+.done{
+  color: #00ffa2;
+  text-shadow: 2px 2px 6px black;
+}
+
+.doing{
+  color: #ff003c;
+  text-shadow: 2px 2px 6px black;
+}
+
+.mobile{
+  height: 100%;
+}
+
 .workout-content{
   height: 40%;
   width: 95%;
-  background-color: darkgrey;
+  background-color: #4e5067;
   overflow: auto;
   text-align: center;
   margin: 0 auto 0 auto;
+  border-radius: 0 0 6px 6px;
+}
+
+.workout-content li{
+  color: white;
+  font-size: larger;
+  text-shadow: 2px 2px 6px black;
+  font-weight: bold;
 }
 
 .selector{
   padding-top: 10px;
-  margin-top: 20px;
   margin: 0 auto 0 auto;
   width: 95%;
 }
-.selector button{ width: 50%; }
 
-#done-content{ display: none;}
+.tab-btn{
+  width: 50%;
+  border: none;
+  background-color: #23263D;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+#doing{ color: #ff003c; border-radius: 6px 0 0 0; }
+#done{ color: #00ffa2; border-radius:  0 6px 0 0; }
+#doing:hover{ background: #ff003c; color: white; }
+#done:hover{ background: #00ffa2; color: white; }
+
 
 .controlPanel{
   width: 100%;
   height: fit-content;
   text-align: center;
 }
+
+.nextBtn{
+  margin-top: 20px;
+  width: 50%;
+  height: 65px;
+  font-size: 30px;
+  background-color: #00ffa2;
+  color: white;
+  border-radius: 6px;
+  border: none;
+}
+
+.quitBtn{
+  margin-top: 20px;
+  width: 25%;
+  height: 35px;
+  font-size: 20px;
+  background-color: #ff003c;
+  color: white;
+  border-radius: 6px;
+  border: none;
+}
+
+.quitBtn:hover{ background-color: #e70036; } 
+.nextBtn:hover{ background-color: #00da8a; }
 
 #current-lift{
   color: white;
@@ -41,27 +99,9 @@
   font-size: 24px;
 }
 
-.nextBtn{
-  margin-top: 20px;
-  width: 50%;
-  height: 65px;
-  font-size: 30px;
-  background-color: #00ff6e;
-  color: white;
-  border-radius: 6px;
-  border: none;
-}
+#done-content{ display: none; }
 
-.quitBtn{
-  margin-top: 20px;
-  width: 25%;
-  height: 35px;
-  font-size: 20px;
-  background-color: red;
-  color: white;
-  border-radius: 6px;
-  border: none;
-}
+
 
 /*
 #current-lift-SR

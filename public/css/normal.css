@@ -9,7 +9,17 @@
 
 body{
   background-color: #23263d;
+  user-select: none;
 }
+
+button:focus{
+  outline: none;
+}
+
+/*TESTING*/
+
+
+/*should be moved to own file: window*/
 
 .test{
   float:left;
@@ -20,8 +30,8 @@ body{
 .window{
   width: 95%;
   height: 95%;
+  min-height: fit-content;
   background-color: #3b3d53;
-
   border-radius: 6px;
   box-shadow: 2px 2px 6px black;
 
@@ -49,3 +59,18 @@ body{
   font-size: 32px;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(180, 180, 180); 
+  border-radius: 10px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(143, 143, 143);
+}

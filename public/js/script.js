@@ -1,3 +1,6 @@
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
 const doneTab = document.getElementById("done");
 const doingTab = document.getElementById("doing");
 const doingContent = document.getElementById("doing-content");
@@ -33,10 +36,16 @@ async function getXML(){
 
 
 function displayContent(xml){
-  const program = xml.getElementsByTagName('P29'); //program 29
-  const week = program[0].childNodes[1];           //week 1 
-  const day = week.childNodes[1];                  //day 1
+  const p = urlParams.get('program');
+  const w = urlParams.get('week');
+  const d = urlParams.get('day');
+
+  const program = xml.getElementsByTagName(p); //program 
+  const week = program[0].childNodes[w];       //week 
+  const day = week.childNodes[d];              //day
   const exercises = day.childNodes;
+
+  console.log(week.childNodes);
 
   for(let i = 0; i < exercises.length; i++){
     if(exercises[i].tagName){
@@ -64,7 +73,7 @@ function convertExercise(name){
   switch(name.tagName){
     case "Bench":     return "Benchpress";
     case "Squat":     return "Squat";
-    case "Deadlift":  return "Deadlift";
+    case "DL":        return "Deadlift";
     case "Rack":      return "Rackpulls";
     case "WP":        return "Wheighted pushups, shoulder wide";
     case "DL2K":      return "Deadlift to knees";
