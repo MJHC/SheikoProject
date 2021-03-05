@@ -13,8 +13,20 @@ router.get('/workout', (req, res) => {
   res.render('workout', {title: 'Workout'}); 
 });
 
+router.get('/programs', (req, res) => {
+  res.render('programs', {title: 'Programs'}); 
+});
+
+router.get('/programs', (req, res) => {
+  res.render('programs', {title: 'Programs'}); 
+});
+
 router.get('/settings', (req, res) => {
-  res.render('settings', {title: 'Settings'}); 
+  res.send("Under Construction"); 
+});
+
+router.get('/body', (req, res) => {
+  res.send("Under Construction");
 });
 
 module.exports = router;

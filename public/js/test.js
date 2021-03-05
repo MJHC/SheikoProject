@@ -1,3 +1,4 @@
+// FOR THE MOBILE MENU
 const arrow = document.getElementById("arrow");
 const menu = document.getElementsByClassName("menu")[0];
 let hidden = true;

@@ -1,3 +1,5 @@
+
+// BACKGROUND MOVEMENT
 let angle = 0;
 const body = document.body;
 

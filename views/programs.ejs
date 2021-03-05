@@ -1,7 +1,6 @@
-﻿<!--<h1>this is the settings page</h1>-->
-<div class="program-selection">
+﻿<div class="program-selection">
   <form action="/workout" method="GET">
-    <select disabled  >
+    <select disabled>
       <option>Sheiko</option>
     </select>
 
@@ -21,7 +20,7 @@
       <option value="5">Day 3</option>
     </select><br>
 
-    <input type="checkbox" id="secondary" name="secondaryEx">
+    <input type="checkbox" id="secondary" name="secondaryExercises">
     <label for="secondary">Secondary exercises</label><br>
 
     <div class="personal">
@@ -37,26 +36,6 @@
     <button class="upset" type="submit">Update settings</button>
   </form>
 </div>
-<script>
 
-getJSON();
-async function getJSON(){
-  const response = await fetch("xml/allprograms.json");
-  const data = await response.json();
-  test(data);
-}
-
-function test(data){
-  const prog = data.programs;
-  const xml = data.xmlname;
-  const select = document.getElementById("programs");
-  for(let i = 0; i < prog.length; i++){
-    const option = document.createElement("option");
-    option.setAttribute("value", xml[i]);
-    option.innerHTML = prog[i];
-    select.appendChild(option);
-  }
-
-}
-
-</script>
+<script src="js/load.js"></script>
+<script src="js/programs.js"></script>

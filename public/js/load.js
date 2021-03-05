@@ -1,45 +1,13 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-
-const bmax = parseInt(urlParams.get('bmax'));
-const smax = parseInt(urlParams.get('smax'));
-const dmax = parseInt(urlParams.get('dmax'));
-
-const doneTab = document.getElementById("done");
-const doingTab = document.getElementById("doing");
-const doingContent = document.getElementById("doing-content");
-const doneContent = document.getElementById("done-content");
-let done = false;
-
-doneTab.addEventListener('click', ()=>{
-  if(!done){
-    doneContent.style.display = "block";
-    doingContent.style.display = "none";
-    done = true;
-  }
-});
-
-doingTab.addEventListener('click', ()=>{
-  if(done){
-    doneContent.style.display = "none";
-    doingContent.style.display = "block";
-    done = false;
-  }
-});
-
-document.addEventListener('DOMContentLoaded', getXML);
-
-
+// Getting and displaying XML \\
 async function getXML(){
   const response = await fetch("xml/sheiko.xml");
   const data = await response.text();
   const parser = new DOMParser();
   const xml = parser.parseFromString(data, "application/xml");
-  displayContent(xml);
+  displayProgram(xml);
 }
 
-
-function displayContent(xml){
+function displayProgram(xml){
   const p = urlParams.get('program');
   const w = urlParams.get('week');
   const d = urlParams.get('day');
@@ -49,9 +17,7 @@ function displayContent(xml){
   const day = week.childNodes[d];              //day
   const exercises = day.childNodes;
 
-  let last = "ere";
-
-  console.log(week.childNodes);
+  let last = "";
 
   for(let i = 0; i < exercises.length; i++){
     if(exercises[i].tagName){
@@ -76,7 +42,6 @@ function generateExercise(item, SR, last){
     const string = item.textContent;
     let arr = string.split("x");
     arr[2] = parseInt(arr[2]);
-    console.log(arr);
 
     li.textContent = `${arr[0]} Sets ${arr[1]} Reps ${calcExercise(arr[2], last)} KG`;  
 
@@ -84,6 +49,7 @@ function generateExercise(item, SR, last){
   list.appendChild(li);
 }
 
+// for the sheiko programs
 function convertExercise(name){
   switch(name.tagName){
     case "Bench":     return "Benchpress";
@@ -116,18 +82,28 @@ function convertExercise(name){
 
 function calcExercise(arr, last){
   switch(last){
-    case "Bench": 
-      if(bmax)
-        return (arr/100)*bmax;
-      return arr;
-    case "Squat": 
-      if(smax)
-        return (arr/100)*smax;
-      return arr;
-    case "DL":    
-      if(dmax)
-        return (arr/100)*dmax;
-      return arr;
+    case "Bench": if(bmax) return (arr/100)*bmax; return arr;
+    case "Squat": if(smax) return (arr/100)*smax; return arr;
+    case "DL":    if(dmax) return (arr/100)*dmax; return arr;
     default: return "error";
+  }
+}
+
+// Getting and displaying JSON \\ 
+async function getJSON(){
+  const response = await fetch("xml/allprograms.json");
+  const data = await response.json();
+  displayProgramList(data);
+}
+
+function displayProgramList(data){
+  const prog = data.programs;
+  const xml = data.xmlname;
+  const select = document.getElementById("programs");
+  for(let i = 0; i < prog.length; i++){
+    const option = document.createElement("option");
+    option.setAttribute("value", xml[i]);
+    option.innerHTML = prog[i];
+    select.appendChild(option);
   }
 }

@@ -1,24 +1,27 @@
 <div class="mobile">
-  <div class="selector"><button class="tab-btn" id="doing">Doing</button><button class="tab-btn" id="done">Done</button></div>
+  <div class="selector"><button class="tab-btn" id="tab-doing">Doing</button><button class="tab-btn" id="tab-done">Done</button></div>
+  
   <div class="workout-content">
     <div id="doing-content">
-      <h2 class="doing">Doing</h2>
+      <h2 class="h1-doing">Doing</h2>
       <ul id="workout"></ul>
     </div>
 
     <div id="done-content">
-      <h2 class="done">Done</h2>
+      <h2 class="h1-done">Done</h2>
       <ul id="workout-done"></ul>
     </div>
   </div>
-
 
   <div class="controlPanel">
     <h1 id="current-lift">Bench press</h1>
     <h1 id="current-lift-KG">60 KG</h1>
     <h1 id="current-lift-SR">Do 1 set of 4 reps</h1>
-    <button class="nextBtn">Next</button><br>
-    <button class="quitBtn">Quit</button>
+    <button id="nextBtn">Next</button><br>
+    <button id="quitBtn">Quit</button>
   </div>
+  
 </div>
-<script src="js/script.js"></script>
+
+<script src="js/load.js"></script>
+<script src="js/workoutMain.js"></script>

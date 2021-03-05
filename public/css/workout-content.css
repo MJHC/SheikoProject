@@ -1,16 +1,9 @@
-.done{
-  color: #00ffa2;
-  text-shadow: 2px 2px 6px black;
-}
+.h1-done, .h1-doing, .workout-content li {text-shadow: 2px 2px 6px black;}
 
-.doing{
-  color: #ff003c;
-  text-shadow: 2px 2px 6px black;
-}
+.h1-done { color: #00ffa2; }
+.h1-doing{ color: #ff003c; }
 
-.mobile{
-  height: 100%;
-}
+.mobile{ height: 100%; }
 
 .workout-content{
   height: 40%;
@@ -25,7 +18,6 @@
 .workout-content li{
   color: white;
   font-size: larger;
-  text-shadow: 2px 2px 6px black;
   font-weight: bold;
 }
 
@@ -44,11 +36,10 @@
   font-weight: 900;
 }
 
-#doing{ color: #ff003c; border-radius: 6px 0 0 0; }
-#done{ color: #00ffa2; border-radius:  0 6px 0 0; }
-#doing:hover{ background: #ff003c; color: white; }
-#done:hover{ background: #00ffa2; color: white; }
-
+#tab-doing{ color: #ff003c; border-radius: 6px 0 0 0; }
+#tab-done{ color: #00ffa2; border-radius:  0 6px 0 0; }
+#tab-doing:hover{ background: #ff003c; color: white; }
+#tab-done:hover{ background: #00ffa2; color: white; }
 
 .controlPanel{
   width: 100%;
@@ -56,36 +47,33 @@
   text-align: center;
 }
 
-.nextBtn{
-  margin-top: 20px;
+#nextBtn, #quitBtn{ 
+  margin-top: 20px; 
+  color: white;
+  border-radius: 6px;
+  border: none;}
+
+#nextBtn{
   width: 50%;
   height: 65px;
   font-size: 30px;
   background-color: #00ffa2;
-  color: white;
-  border-radius: 6px;
-  border: none;
 }
 
-.quitBtn{
-  margin-top: 20px;
+#quitBtn{
   width: 25%;
   height: 35px;
   font-size: 20px;
   background-color: #ff003c;
-  color: white;
-  border-radius: 6px;
-  border: none;
 }
 
-.quitBtn:hover{ background-color: #e70036; } 
-.nextBtn:hover{ background-color: #00da8a; }
+#quitBtn:hover{ background-color: #e70036; } 
+#nextBtn:hover{ background-color: #00da8a; }
 
-#current-lift{
+#current-lift, #current-lift-SR{
   color: white;
   font-weight: 400;
 }
-
 
 #current-lift-KG{
   color: #00a8ff;
@@ -93,18 +81,5 @@
   font-weight: 400;
 }
 
-#current-lift-SR{
-  color: white;
-  font-weight: 400;
-  font-size: 24px;
-}
-
+#current-lift-SR{ font-size: 24px; }
 #done-content{ display: none; }
-
-
-
-/*
-#current-lift-SR
-#nextBtn
-#quitBtn
-*/

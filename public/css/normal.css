@@ -12,32 +12,25 @@ body{
   user-select: none;
 }
 
-button:focus{
-  outline: none;
-}
+button:focus, input:focus, select:focus{ outline: none; }
 
-input:focus{ outline: none; }
+
 
 ::placeholder{
   color: #696c8d;
   opacity: 1;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
- 
-/* Handle */
+::-webkit-scrollbar             { width: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(143, 143, 143); }
+
 ::-webkit-scrollbar-thumb {
   background: rgb(180, 180, 180); 
   border-radius: 10px;
 
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(143, 143, 143);
-}
+
 
 /*testing*/
 
