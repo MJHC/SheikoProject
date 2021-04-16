@@ -1,19 +1,26 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const expressLayouts = require('express-ejs-layouts');
-const port = process.env.PORT || 3000;
-const path = require('path');
+import expressLayouts from 'express-ejs-layouts';
+import bodyParser from 'body-parser';
+import session from 'express-session';
 
-const routes = require('./routes/config');
+import * as easyDB from './js/easyData.js';
+const port = process.env.PORT || 80;
+
+import {router} from './routes/config.js';
 
 app.use(express.static('public'));
-app.use('/xml', express.static(path.join(__dirname, 'data')))
 
 app.use(expressLayouts);
-app.set('layout', './layouts/page');
+app.use(session(easyDB.sessionOptions));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.set('layout', './layouts/index');
 app.set('view engine', 'ejs');
 
-app.use('/', routes);
+
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Sheiko Project @${port}`);

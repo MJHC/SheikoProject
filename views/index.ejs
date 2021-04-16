@@ -1,18 +1,7 @@
-﻿<div id="container">
-  <h1 id="header">Workout Concept</h1>
-  <div id="form-container">
-    <!--
-      - method should be changed to POST
-      - Fix Class and id names
-      - Get server running
-    -->
-    <form>
-      <input type="text" name="user" placeholder="username" id="user" required>
-      <input type="password" name="pass" placeholder="password" id="pass" required>
-      <input type="button" id="createAcc" value="Create Account" class="floatleft">
-      <input type="submit" id="loginbtn" value="login" class="floatright">
-      <p id="error" class="floatleft">ERROR</p>
-      <a href="/programs" style="color:yellow;">Check side</a> 
-    </form>
-  </div>
-</div>
+﻿<body>
+    <div class="wrapper">
+        <h1>Hello <%- user%></h1>
+        <h2>Current Program progress</h2>
+        <h3>Cname Pname W#D#</h3><!--Database info displayed here-->
+    </div>
+</body>
