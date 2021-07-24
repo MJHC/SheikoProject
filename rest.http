@@ -1,0 +1,22 @@
+GET http://localhost/load
+
+###
+
+GET http://localhost/home
+
+###
+
+POST /login HTTP/1.1
+HOST: localhost
+Content-Type:application/json
+Accept:application/json
+
+{
+    "user": "magnus",
+    "pass": "secret"
+}
+
+###
+
+POST /logout HTTP/1.1
+HOST: localhost

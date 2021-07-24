@@ -1,14 +1,16 @@
-import mysql from 'mysql';
+import dotenv from 'dotenv';
+dotenv.config();
 
+import mysql from 'mysql';
 import bcrypt from 'bcrypt';
 const salt = 10;
 
 const DB = mysql.createConnection({
-    host: "localhost",
-    port: "3306",
-    user: "root",
-    password: "#####",
-    database: "conceptdatabase"
+    host: process.env.HOST,
+    port: process.env.DBPORT,
+    user: process.env.USER,
+    password: process.env.DBPASS,
+    database: process.env.DB
 }); 
   
 DB.connect(connectMSG);
@@ -22,13 +24,17 @@ export const sessionOptions = {
     secret: 'secret',
     resave: true,
     saveUninitialized: true,
-    cookie: {maxAge: (60000*5)}
+    /*cookie: {maxAge: (60000*5)}*/
 }
 
 export function homePage(req, res){
     if(req.session.loggedIn)
         res.render('index', {user: req.session.username, title: "Home Page"}); 
     else res.redirect('/login');
+}
+
+export function testPage(req, res){
+    res.render('test');
 }
 
 export function login(req, res){
@@ -45,10 +51,10 @@ export function login(req, res){
 
     function loginReq(err, result){
         if (err) throw err;
-        if(result.length > 0) bcrypt.compare(pass, result[0].password, passCom);
+        if(result.length > 0) bcrypt.compare(pass, result[0].password, passCompare);
     }
 
-    function passCom(err, result){
+    function passCompare(err, result){
         if(err) throw err;
         if(result){
             req.session.loggedIn = true;
@@ -109,4 +115,26 @@ export function logout(req, res){
     console.log("logged out");
     res.redirect('/');
     res.end();
+}
+
+export function getProgram(req, res){
+    const sqlQuery = `SELECT 
+                      week, day, all_exercises.name, collection, collection_key, sets, reps, procent
+                      FROM exercises 
+                      INNER JOIN all_exercises 
+                      ON (exercises.exercise_id=all_exercises.id) 
+                      AND exercises.program_id = ?;`
+
+    DB.query(sqlQuery, [1], getProgramSQL);
+
+    function getProgramSQL(err, result){
+        if(err) throw err;
+        if(result.length > 0){
+            /*for(const exercise of result){
+                console.log(exercise.name);
+            }*/
+            //console.table(result);
+            res.send(result);
+        }
+    }
 }
