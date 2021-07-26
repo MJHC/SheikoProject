@@ -51,6 +51,7 @@ function printTest(data){
     const table = document.getElementById("working");
     const currentExercise = document.getElementById("current-exercise");
     const currentSet = document.getElementById("current-set");
+    const currentLoad = document.getElementById("current-load");
 
     for(const exercise of data){
         if(exercise.collection_key == 1){
@@ -74,7 +75,8 @@ function printTest(data){
     }
 
     currentExercise.textContent = table.rows[0].cells[0].innerHTML;
-    currentSet.textContent = `${table.rows[1].cells[0].innerHTML} ${table.rows[1].cells[1].innerHTML} ${table.rows[1].cells[2].innerHTML} kg`;
+    currentLoad.textContent = `${table.rows[1].cells[2].innerHTML} kg`;
+    currentSet.textContent = `${table.rows[1].cells[0].innerHTML} ${table.rows[1].cells[1].innerHTML}`;
 
     function newText(string){
         return document.createTextNode(string);
