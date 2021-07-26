@@ -1,47 +1,52 @@
+let exerciseTracker = 0;
+let setsTracker = 0;
+
 function nextExercise(){
     const workingTable = document.getElementById("working");
     const doneTable = document.getElementById("done");
     const exercise = workingTable.rows;
-    if(exercise[0].cells[0].getAttribute('colspan') > 1){
-        const newTitleRow = doneTable.insertRow(-1);
-        const newRow = doneTable.insertRow(-1);
+    const setsCell = exercise[0].cells[0];
+    const doneBtn = document.getElementById("done-btn");
+    const currentExercise = document.getElementById("current-exercise");
+    const currentSet = document.getElementById("current-set");
 
+    data[exerciseTracker].sets = data[exerciseTracker].sets -1;
+    
+
+    if(exercise[0].cells.length === 1){
+        const newTitleRow = doneTable.insertRow(-1);
         newTitleRow.innerHTML = exercise[0].innerHTML;
-        newRow.innerHTML = exercise[1].innerHTML;
-        workingTable.deleteRow(0);
-        workingTable.deleteRow(0);
-    } else{
-        const newRow = doneTable.insertRow(-1);
-        newRow.innerHTML = exercise[0].innerHTML;
         workingTable.deleteRow(0);
     }
-}
 
-function moveTitleExercise(){
-    const newTitleRow = doneTable.insertRow(-1);
-    const newRow = doneTable.insertRow(-1);
+    if(data[exerciseTracker].sets <= 0){
+        const newRow = doneTable.insertRow(-1);
+        newRow.innerHTML = exercise[0].innerHTML;
+        newRow.cells[0].innerHTML = setsTracker + " Sets";    
+        workingTable.deleteRow(0);
 
-    newTitleRow.innerHTML = exercise[0].innerHTML;
-    
-    const sets = newRow.insertCell(0);
-    sets.appendChild(newText("1 Set"));
+        if(exercise.length <= 0){
+            doneBtn.setAttribute("disabled", "1");
 
-    const reps = newRow.insertCell(1);
-    reps.textConent = exercise[1].cell(1).textConent;
+            return;
+        }
 
-    const volume = newRow.insertCell(2);
-    volume.textConent = exercise[1].cell(2).textConent;
+        if(exercise[0].cells.length === 1){
+            const newTitleRow = doneTable.insertRow(-1);
+            newTitleRow.innerHTML = exercise[0].innerHTML;
+            currentExercise.textContent = exercise[0].cells[0].innerHTML;
+            workingTable.deleteRow(0);
+        }
+        
+        exerciseTracker++;
+        setsTracker = 0;
+    }
 
-    exercise[1].cell(0).textConent = minusToCell(1, 0, 1);
-    
-}
+    if(exercise[0].cells.length != 1)
+        currentSet.textContent = `${data[exerciseTracker].sets} Sets ${data[exerciseTracker].reps} Reps ${data[exerciseTracker].procent} kg`;
+    else currentSet.textContent = `${exercise[1].cells[0].innerHTML} ${exercise[1].cells[1].innerHTML}`;
 
-function minusToCell(row, cell, number){
-    const string = exercise[row].cell(cell).textConent;
-    const arr = string.split(" ");
-    return parseInt(arr[0], 10) - number + " Sets";
-}
+    setsTracker++;
 
-function newText(string){
-    return document.createTextNode(string);
+    setsCell.innerHTML = data[exerciseTracker].sets + " Sets";
 }

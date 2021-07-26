@@ -9,14 +9,19 @@
     }
 </style>
 
+
+
+
 <table id="working"></table>
 
-<button onclick="getProgram()">Fetch</button>
-<button onclick="nextExercise()">Done</button>
+<!--<button onclick="getProgram()">Fetch</button>-->
+<button onclick="printProgram(data)">get data</button>
+<button id="done-btn" onclick="nextExercise()">Done</button>
 
 <table id="done"></table>
 
-
+<p id="current-exercise">No Program</p>
+<p id="current-set">no set</p>
 
 <script src="/js/fetchprogram.js"></script>
 <script src="/js/modifyProgramTable.js"></script>

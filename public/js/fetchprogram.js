@@ -1,3 +1,46 @@
+let data =[
+    {
+        "week": 1,
+        "day": 1,
+        "name": "Benchpress",
+        "collection": 1,
+        "collection_key": 1,
+        "sets": 1,
+        "reps": 5,
+        "procent": 50
+    },
+    {
+        "week": 1,
+        "day": 1,
+        "name": "Benchpress",
+        "collection": 1,
+        "collection_key": 2,
+        "sets": 2,
+        "reps": 4,
+        "procent": 70
+    },
+    {
+        "week": 1,
+        "day": 1,
+        "name": "Benchpress",
+        "collection": 1,
+        "collection_key": 3,
+        "sets": 5,
+        "reps": 2,
+        "procent": 100
+    },
+    {
+        "week": 1,
+        "day": 1,
+        "name": "Squat",
+        "collection": 2,
+        "collection_key": 1,
+        "sets": 5,
+        "reps": 2,
+        "procent": 100
+    }
+]
+
 async function getProgram(){
     const res = await fetch("/load");
     const data = await res.json();
@@ -6,6 +49,7 @@ async function getProgram(){
 
 function printProgram(data){
     const table = document.getElementById("working");
+    const currentExercise = document.getElementById("current-exercise");
 
     for(const exercise of data){
         if(exercise.collection_key == 1){
@@ -27,6 +71,8 @@ function printProgram(data){
         if(exercise.procent)
             volume.appendChild(newText(exercise.procent));
     }
+
+    currentExercise.textContent = table.rows[0].cells[0].innerHTML;
 
     function newText(string){
         return document.createTextNode(string);
