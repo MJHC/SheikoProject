@@ -34,7 +34,7 @@ export function homePage(req, res){
 }
 
 export function testPage(req, res){
-    res.render('test');
+    res.render('programtest');
 }
 
 export function login(req, res){

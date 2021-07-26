@@ -41,15 +41,16 @@ let data =[
     }
 ]
 
-async function getProgram(){
+/*async function getProgram(){
     const res = await fetch("/load");
     const data = await res.json();
     printProgram(data);
-}
+}*/
 
-function printProgram(data){
+function printTest(data){
     const table = document.getElementById("working");
     const currentExercise = document.getElementById("current-exercise");
+    const currentSet = document.getElementById("current-set");
 
     for(const exercise of data){
         if(exercise.collection_key == 1){
@@ -73,8 +74,11 @@ function printProgram(data){
     }
 
     currentExercise.textContent = table.rows[0].cells[0].innerHTML;
+    currentSet.textContent = `${table.rows[1].cells[0].innerHTML} ${table.rows[1].cells[1].innerHTML} ${table.rows[1].cells[2].innerHTML} kg`;
 
     function newText(string){
         return document.createTextNode(string);
     }
 }
+
+printTest(data);
