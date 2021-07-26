@@ -3,12 +3,12 @@
   <div class="workout-content">
     <div id="doing-content">
       <h2 class="doing">Doing</h2>
-      <ul id="workout"></ul>
+      <table id="working"></table>
     </div>
 
     <div id="done-content">
       <h2 class="done">Done</h2>
-      <ul id="workout-done"></ul>
+      <table id="doneTable"></table>
     </div>
   </div>
 
@@ -17,8 +17,10 @@
     <h1 id="current-lift">Bench press</h1>
     <h1 id="current-lift-KG">60 KG</h1>
     <h1 id="current-lift-SR">Do 1 set of 4 reps</h1>
-    <button class="nextBtn">Next</button><br>
+    <button id="done-btn" class="nextBtn" onclick="nextExercise()">Next</button><br>
     <button class="quitBtn">Quit</button>
   </div>
 </div>
+<script src="js/programManager.js"></script>
+<script src="js/printTest.js"></script>
 <script src="js/script.js"></script>

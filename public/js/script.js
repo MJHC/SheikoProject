@@ -27,7 +27,7 @@ doingTab.addEventListener('click', ()=>{
   }
 });
 
-document.addEventListener('DOMContentLoaded', getXML);
+//document.addEventListener('DOMContentLoaded', getXML);
 
 
 async function getXML(){
