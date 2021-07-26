@@ -85,7 +85,7 @@ function nextExercise(){
             currentExercise.textContent = exercise[0].cells[0].innerHTML;
             workingTable.deleteRow(0);
         }
-        currentLoad.textContent = exercise[0].cells[2].innerHTML;
+        currentLoad.textContent = exercise[0].cells[2].innerHTML + " kg";
         exerciseTracker++;
         setsTracker = 0;
     }
