@@ -89,13 +89,13 @@ export function getItems(req, res){
 }
 
 export function createAccount(req, res){
-    const sqlQuery = `INSERT INTO users (username, password) VALUES(?, ?)`;
+    const sqlQuery = `INSERT INTO users (email, username, hash) VALUES(?, ?, ?)`;
     const successMsg = "Account Created!";
     const failedMsg = "Account Creation Failed!";
 
-    const user = req.body.user, pass = req.body.pass;
+    const user = req.body.user, pass = req.body.pass, email = req.body.email;
 
-    if(user && pass){
+    if(email && user && pass){
         bcrypt.hash(pass, salt, createHashedPass);
         res.send(successMsg);
         res.end();
@@ -106,7 +106,9 @@ export function createAccount(req, res){
 
     function createHashedPass(err, hash){
         if(err) throw err;
-        DB.query(sqlQuery, [user, hash], easyDB.errorMSG);
+        DB.query(sqlQuery, [email, user, hash], err =>{
+            if(err) throw err;
+        });
     }
 }
 
