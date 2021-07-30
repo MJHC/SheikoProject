@@ -6,14 +6,15 @@ GET http://localhost/home
 
 ###
 
-POST /login HTTP/1.1
+POST /create HTTP/1.1
 HOST: localhost
 Content-Type:application/json
 Accept:application/json
 
 {
-    "user": "magnus",
-    "pass": "secret"
+    "email": "0",
+    "user": "admin",
+    "pass": "admin"
 }
 
 ###

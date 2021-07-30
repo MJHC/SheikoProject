@@ -22,4 +22,8 @@ VALUES
 ("Wheighted pushups, wide"),
 ("Pistol Squats"),
 ("Chin Ups"),
-("Leg Extensions");
+("Leg Extensions"),
+("Competetion Day!"),
+("Deficit Deadlift"),
+("Dumbbell press");
+;

@@ -120,22 +120,23 @@ export function logout(req, res){
 }
 
 export function getProgram(req, res){
-    const sqlQuery = `SELECT 
-                      week, day, all_exercises.name, collection, collection_key, sets, reps, procent
-                      FROM exercises 
-                      INNER JOIN all_exercises 
-                      ON (exercises.exercise_id=all_exercises.id) 
-                      AND exercises.program_id = ?;`
+    const sqlQuery = 
+    `SELECT 
+    week, day, all_exercises.name, ex_list, ex_list_item, sets, reps, procent
+    FROM exercises 
+    INNER JOIN all_exercises 
+    ON (exercises.exercise_id=all_exercises.id) 
+    AND exercises.program_id = ?
+    AND exercises.week = ?
+    AND exercises.day = ?
+    ORDER BY ex_list;`
 
-    DB.query(sqlQuery, [1], getProgramSQL);
+    DB.query(sqlQuery, [10, 1, 1], getProgramSQL);
 
     function getProgramSQL(err, result){
         if(err) throw err;
         if(result.length > 0){
-            /*for(const exercise of result){
-                console.log(exercise.name);
-            }*/
-            //console.table(result);
+            console.table(result);
             res.send(result);
         }
     }
