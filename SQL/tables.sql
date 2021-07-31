@@ -54,3 +54,25 @@ CREATE TABLE exercises(
     FOREIGN KEY (program_id) REFERENCES programs(id),
     FOREIGN KEY (exercise_id) REFERENCES all_exercises(id)
 );
+
+CREATE TABLE userstats(
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    bench_max INT NOT NULL,
+    squat_max INT NOT NULL,
+    deadlift_max INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE userexerciselog(
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    program_id INT NOT NULL,
+    week INT NOT NULL,
+    day INT NOT NULL,
+    begun DATE NOT NULL DEFAULT (CURRENT_DATE),
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (program_id) REFERENCES programs(id)
+);

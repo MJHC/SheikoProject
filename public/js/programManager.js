@@ -1,25 +1,34 @@
 let exerciseTracker = 0;
 let setsTracker = 0;
+let data;
+
+getProgram();
 
 /** Fetches program from server */
-async function fetchProgram(programID, week, day){
-    const res = await fetch(`/load?p=${programID}&w=${week}&d=${day}`);
-    const data = await res.json();
-    printProgram(data);
+async function getProgram(){
+//async function fetchProgram(programID, week, day){
+    //const res = await fetch(`/load?p=${programID}&w=${week}&d=${day}`);
+    const res = await fetch("/load");
+    const program = await res.json();
+    data = program;
+    printProgram(program);
 }
 
 /** Prints program to table */
-function printProgram(data){
+function printProgram(program){
     const table = document.getElementById("working");
+    const currentExercise = document.getElementById("current-exercise");
 
-    for(const exercise of data){
-        if(exercise.collection_key == 1) createTitle(table);
+    for(const exercise of program){
+        if(exercise.ex_list_item == 1) createTitle(table, exercise);
         createExercise(table, exercise);
     }
+
+    currentExercise.textContent = table.rows[0].cells[0].innerHTML;
 }
 
 /** Creates title for exercise */
-function createTitle(table){
+function createTitle(table, exercise){
     const newTitleRow = table.insertRow(-1);
     const titleCell = newTitleRow.insertCell(0);
     const title = document.createTextNode(exercise.name);

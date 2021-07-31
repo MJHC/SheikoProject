@@ -1,6 +1,5 @@
 import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
-import bodyParser from 'body-parser';
 import session from 'express-session';
 import * as easyDB from './scripts/easyData.js';
 import {router} from './routes/config.js';
@@ -12,10 +11,11 @@ app.use(expressLayouts);
 
 app.use(session(easyDB.sessionOptions));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.set('layout', './layouts/index');
+
+app.set('layout', './layouts/default');
 app.set('view engine', 'ejs');
 
 app.use(router);

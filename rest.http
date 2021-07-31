@@ -13,6 +13,18 @@ Accept:application/json
 
 {
     "email": "0",
+    "user": "admin2",
+    "pass": "admin"
+}
+
+###
+
+POST /login HTTP/1.1
+HOST: localhost
+Content-Type:application/json
+Accept:application/json
+
+{
     "user": "admin",
     "pass": "admin"
 }
@@ -21,3 +33,16 @@ Accept:application/json
 
 POST /logout HTTP/1.1
 HOST: localhost
+
+###
+
+POST /update HTTP/1.1
+HOST: localhost
+Content-Type:application/json
+Accept:application/json
+
+{
+    "p": 10,
+    "w": 1,
+    "d": 1
+}

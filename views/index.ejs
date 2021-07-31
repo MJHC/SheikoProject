@@ -1,0 +1,17 @@
+<h1>hello <%= user %></h1>
+
+<fieldset>
+    <legend>Your Personal Best</legend>
+    <h4>Bench: <%= userdata.b %> Squat: <%= userdata.s %> Deadlift: <%= userdata.d %></h4>
+</fieldset>
+<fieldset>
+    <legend>Your Current Workout</legend>
+    <h4>Program: <%= userdata.program.p %> Week: <%= userdata.program.w %> Day: <%= userdata.program.d %></h4>
+    <form action="/workout">
+        <input type="submit" value="BEGIN WORKOUT!">
+    </form>
+</fieldset>
+
+<form method="POST" action="/logout">
+    <input type="submit" value="logout">
+</form>

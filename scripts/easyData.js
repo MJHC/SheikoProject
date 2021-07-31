@@ -29,16 +29,41 @@ export const sessionOptions = {
 
 export function homePage(req, res){
     if(req.session.loggedIn)
-        res.render('index', {user: req.session.username, title: "Home Page"}); 
+        DB.query(`SELECT name FROM programs WHERE id =?`,[req.session.p],(err, result)=>{
+            if(err) throw err;
+            if(result.length > 0){
+                res.render('index', {
+                    user: req.session.username, 
+                    title: "Home Page", 
+                    userdata: {
+                        b: req.session.bm,
+                        s: req. session.sm,
+                        d: req.session.dm,
+                        program:{
+                            p: result[0].name,
+                            w: req.session.w,
+                            d: req.session.d
+                        }
+                    }
+                }); 
+            }
+        });
     else res.redirect('/login');
 }
 
-export function testPage(req, res){
-    res.render('programtest');
+export function loginPage(req, res){
+    if(!req.session.loggedIn)
+        res.render('login', {title: 'Login Page'}); 
+    else res.redirect('/');
 }
 
 export function login(req, res){
-    const sqlQuery = `SELECT username, password FROM users WHERE username=?`;
+    const sqlQuery = `SELECT username, hash FROM users WHERE username=?`;
+    const sqlProgramSetup = 
+    `SELECT program_id, week, day, userstats.bench_max, userstats.squat_max, userstats.deadlift_max
+    FROM userexerciselog
+    INNER JOIN userstats on(userexerciselog.user_id = userstats.user_id)
+    WHERE userexerciselog.user_id in (SELECT id FROM users WHERE username = ?);`
     const noInput = "Please enter user and pass";
     const user = req.body.user, pass = req.body.pass;
 
@@ -51,39 +76,28 @@ export function login(req, res){
 
     function loginReq(err, result){
         if (err) throw err;
-        if(result.length > 0) bcrypt.compare(pass, result[0].password, passCompare);
+        if(result.length > 0) bcrypt.compare(pass, result[0].hash, passCompare);
     }
 
     function passCompare(err, result){
         if(err) throw err;
         if(result){
-            req.session.loggedIn = true;
-            req.session.username = user;
-            res.redirect('/');
+            DB.query(sqlProgramSetup, [user], (err, result) =>{
+                if(err) throw err;
+                if(result.length > 0){
+                    req.session.loggedIn = true;
+                    req.session.username = user;
+                    req.session.bm = result[0].bench_max;
+                    req.session.sm = result[0].squat_max;
+                    req.session.dm = result[0].deadlift_max;
+                    req.session.p = result[0].program_id;
+                    req.session.w = result[0].week;
+                    req.session.d = result[0].day;
+                    res.redirect('/');
+                } else res.end();
+            });
         } else{
             res.send("Incorrect input");
-        }
-        res.end();
-    }
-}
-
-export function loginPage(req, res){
-    if(!req.session.loggedIn)
-        res.render('login', {layout: './layouts/login', title: 'Login Page'}); 
-    else res.redirect('/');
-}
-
-export function getItems(req, res){
-    const getItem = `SELECT item FROM items 
-                     JOIN users ON items.owner_id = users.id AND users.username=?`;
-    DB.query(getItem, [req.session.username], resItems);
-
-    function resItems(err, result){
-        if(err) throw err;
-        if(result.length > 0){
-            console.log(result);
-            res.json(result);
-            res.end();
         }
     }
 }
@@ -119,6 +133,12 @@ export function logout(req, res){
     res.end();
 }
 
+export function workout(req, res){
+    if(req.session.loggedIn)
+        res.render('workout', {title: "Workout"});
+    else res.redirect('/login');
+}
+
 export function getProgram(req, res){
     const sqlQuery = 
     `SELECT 
@@ -131,13 +151,54 @@ export function getProgram(req, res){
     AND exercises.day = ?
     ORDER BY ex_list;`
 
-    DB.query(sqlQuery, [10, 1, 1], getProgramSQL);
+    DB.query(sqlQuery, [req.session.p, req.session.w, req.session.d], getProgramSQL);
 
     function getProgramSQL(err, result){
         if(err) throw err;
         if(result.length > 0){
+            calculateWeights(result);
             console.table(result);
             res.send(result);
+        } else res.send("Error");
+    }
+
+    function calculateWeights(res){
+        for(let i = 0; i < res.length; i++){
+            switch(res[i].name){
+                case 'Bench Press':
+                    res[i].procent = round5((res[i].procent/100)*req.session.bm); break;
+                case 'Squat':             
+                    res[i].procent = round5((res[i].procent/100)*req.session.sm); break;
+                case 'Deadlift':          
+                    res[i].procent = round5((res[i].procent/100)*req.session.dm); break;
+                case 'Deadlift to knees':
+                    res[i].procent = round5((res[i].procent/100)*req.session.dm); break;
+                case 'Rack Pulls':
+                    res[i].procent = round5((res[i].procent/100)*req.session.dm); break;
+                case 'Deficit Deadlift':
+                    res[i].procent = round5((res[i].procent/100)*req.session.dm); break;
+                default: return 0;
+            }
+        }
+        function round5(x){
+            return Math.ceil(x/5)*5;
         }
     }
 }
+
+export function updateLog(req, res){
+    const sqlQuery = `
+    UPDATE userexerciselog
+    SET program_id = ?, week = ?, day = ?
+    WHERE user_id in (SELECT id FROM users WHERE username = ?);`;
+
+    if(req.session.loggedIn)
+        DB.query(sqlQuery, [req.body.p, req.body.w, req.body.d, req.session.username], update);
+    else res.status(403).send("No Login");
+    function update(err, result){
+        if(err) throw err;
+        else res.send({message: "Updated!"});
+    }
+}
+
+
