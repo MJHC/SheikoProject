@@ -1,12 +1,33 @@
-<h1>hello <%= user %></h1>
+<style>
+    input[type=number]{
+        width: 38px;
+    }
+</style>
+
+<h1>Hello <%= user %></h1>
 
 <fieldset>
     <legend>Your Personal Best</legend>
+    <form action="/updatestats" method="POST">
+    <label for="bench">Bench:</label>
+    <input type="number" name="bench" value="<%= userdata.b %>">
+    <label for="squat">Squat:</label>
+    <input type="number" name="squat" value="<%= userdata.s %>">
+    <label for="deadlift">Deadlift:</label>
+    <input type="number" name="deadlift" value="<%= userdata.d %>">
+    <input type="submit" value="Update Max">
+    </form>
     <h4>Bench: <%= userdata.b %> Squat: <%= userdata.s %> Deadlift: <%= userdata.d %></h4>
 </fieldset>
 <fieldset>
     <legend>Your Current Workout</legend>
-    <h4>Program: <%= userdata.program.p %> Week: <%= userdata.program.w %> Day: <%= userdata.program.d %></h4>
+    <form action="/changeprogram" method="POST">
+        <select name="program" id="programs">
+        </select>
+        <input type="submit" value="Change Program">
+    </form>
+
+    <h4>Concept: <%= userdata.program.c %> <br> Program: <%= userdata.program.p %> Week: <%= userdata.program.w %> Day: <%= userdata.program.d %></h4>
     <form action="/workout">
         <input type="submit" value="BEGIN WORKOUT!">
     </form>
@@ -15,3 +36,17 @@
 <form method="POST" action="/logout">
     <input type="submit" value="logout">
 </form>
+
+<script>
+    fetch('/programs')
+    .then(res => res.json())
+    .then(p =>{
+        const select = document.getElementById("programs");
+        for(let i = 0; i < p.length; i++){
+            const option = document.createElement("option");
+            option.setAttribute("value", p[i].name);
+            option.innerHTML = p[i].name;
+            select.appendChild(option);
+        }
+    })
+</script>

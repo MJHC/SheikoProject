@@ -2,7 +2,11 @@ GET http://localhost/load
 
 ###
 
-GET http://localhost/home
+GET http://localhost/programs
+
+###
+
+GET http://localhost/workout
 
 ###
 
@@ -36,13 +40,7 @@ HOST: localhost
 
 ###
 
-POST /update HTTP/1.1
+POST /nextworkout HTTP/1.1
 HOST: localhost
 Content-Type:application/json
 Accept:application/json
-
-{
-    "p": 10,
-    "w": 1,
-    "d": 1
-}

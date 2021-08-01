@@ -84,6 +84,12 @@ function nextExercise(){
         // If there is no more exercises disable done button
         if(exercise.length <= 0){
             doneBtn.setAttribute("disabled", null);
+            fetch("/nextworkout", {method: "POST", redirect: "follow"})
+            .then(res =>{
+                if(res.redirected){
+                    location.replace(res.url);
+                }
+            });
             return;
         }
 
