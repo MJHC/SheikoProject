@@ -7,23 +7,34 @@
         width: 250px;
         border-collapse: collapse;
     }
+
+    fieldset{
+        height:200px;
+        overflow: scroll;
+    }
 </style>
 
 
 
-
-<table id="working"></table>
-<br>
-<table id="done"></table>
-
-
-<!--<button onclick="getProgram()">Fetch</button>-->
+<fieldset>
+    <legend>Doing</legend>
+    <table id="working"></table>
+</fieldset>
+<br><br>
 <button id="done-btn" onclick="nextExercise()">Done</button>
-<button onclick="location.replace('/')">Quit</button>
+<button id="quit" onclick="location.replace('/')">Quit</button>
 
 <p id="current-exercise">No Program</p>
 <p id="current-load">no exercise</p>
 <p id="current-set">no set</p>
+
+<fieldset>
+    <legend>Done</legend>
+    <table id="done"></table>
+</fieldset>
+
+
+
 
 <!--<script src="/js/printTest.js"></script>-->
 <script src="/js/programManager.js"></script>

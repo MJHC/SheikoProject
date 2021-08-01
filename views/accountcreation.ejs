@@ -2,12 +2,15 @@
     <legend>Account Creation</legend>
     <form method="POST" action="/create">
         <label for="user">Email</label>
-        <input type="text" name="email"><br>
+        <input type="email" name="email"><br>
         <label for="user">Username</label>
         <input type="text" name="user"><br>
         <label for="pass">Password</label>
         <input type="password" name="pass"><br>
         <input type="submit" value="Create Account">
         <a href="/login">Already have an Account?</a>
+        <% if(locals.message) { %>
+            <p style="color: red; margin: 0;"><%= message %></p>
+        <% } %>
     </form>
 </fieldset>

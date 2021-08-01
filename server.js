@@ -1,15 +1,21 @@
 import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
 import session from 'express-session';
-import * as easyDB from './scripts/easyData.js';
 import {router} from './routes/config.js';
 const app = express();
+
 const port = process.env.PORT;
+const sessionOps = {
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+    /*cookie: {maxAge: (60000*5)}*/
+}
 
 app.use(express.static('public'));
 app.use(expressLayouts);
 
-app.use(session(easyDB.sessionOptions));
+app.use(session(sessionOps));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

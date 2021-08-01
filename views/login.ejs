@@ -8,4 +8,7 @@
         <input type="submit" value="Login">
         <a href="/create">Create Account</a>
     </form>
+    <% if(locals.message) { %>
+        <p style="color: red; margin: 0;"><%= message %></p>
+        <% } %>
 </fieldset>

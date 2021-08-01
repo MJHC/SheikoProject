@@ -6,6 +6,14 @@
 
 <h1>Hello <%= user %></h1>
 
+<p>There are currently <span style="color:rgb(0, 201, 0);"><%=online%></span> user(s) online</p>
+
+
+<form method="POST" action="/logout">
+    <input type="button" value="Account Settings" disabled>
+    <input type="submit" value="logout">
+</form> <br>
+
 <fieldset>
     <legend>Your Personal Best</legend>
     <form action="/updatestats" method="POST">
@@ -19,8 +27,9 @@
     </form>
     <h4>Bench: <%= userdata.b %> Squat: <%= userdata.s %> Deadlift: <%= userdata.d %></h4>
 </fieldset>
+
 <fieldset>
-    <legend>Your Current Workout</legend>
+    <legend>My Current Workout</legend>
     <form action="/changeprogram" method="POST">
         <select name="program" id="programs">
         </select>
@@ -31,11 +40,38 @@
     <form action="/workout">
         <input type="submit" value="BEGIN WORKOUT!">
     </form>
+
+    <br>
+    <input type="button" value="See Progress" disabled>
 </fieldset>
 
-<form method="POST" action="/logout">
-    <input type="submit" value="logout">
-</form>
+<fieldset>
+    <legend>My Programs</legend>
+
+    <form action="/editor">
+        <select id="concepts" name="concept">
+            <option value="concept">concept</option>
+        </select>
+        <select id="myprograms" name="myprograms">
+            <option value="myprogram">myProgram</option>
+        </select>
+        <input type="submit" value="Edit">
+    </form>
+    <br>
+    <form>
+        <input type="submit" value="Make New Program" disabled>
+    </form>
+
+</fieldset>
+
+<fieldset>
+    <legend>Subscriptions</legend>
+
+    
+    <input type="button" value="Manage Subscriptions" disabled>
+    <input type="button" value="Search Concept Database" disabled>
+
+</fieldset>
 
 <script>
     fetch('/programs')

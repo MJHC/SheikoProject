@@ -18,6 +18,8 @@ async function getProgram(){
 function printProgram(program){
     const table = document.getElementById("working");
     const currentExercise = document.getElementById("current-exercise");
+    const currentSet = document.getElementById("current-set");
+    const currentLoad = document.getElementById("current-load");
 
     for(const exercise of program){
         if(exercise.ex_list_item == 1) createTitle(table, exercise);
@@ -25,6 +27,9 @@ function printProgram(program){
     }
 
     currentExercise.textContent = table.rows[0].cells[0].innerHTML;
+    currentSet.textContent = `${table.rows[1].cells[0].innerHTML} ${table.rows[1].cells[1].innerHTML}`;
+    currentLoad.textContent = table.rows[1].cells[2].innerHTML;
+
 }
 
 /** Creates title for exercise */
@@ -60,6 +65,7 @@ function nextExercise(){
     const exercise = workingTable.rows;
     const setsCell = exercise[0].cells[0];
     const doneBtn = document.getElementById("done-btn");
+    const quitBtn = document.getElementById("quit");
     const currentExercise = document.getElementById("current-exercise");
     const currentSet = document.getElementById("current-set");
     const currentLoad = document.getElementById("current-load");
@@ -87,7 +93,8 @@ function nextExercise(){
             fetch("/nextworkout", {method: "POST", redirect: "follow"})
             .then(res =>{
                 if(res.redirected){
-                    location.replace(res.url);
+                    currentLoad.textContent = "Workout Complete!"
+                    //quitBtn.onclick = location.replace(res.url);
                 }
             });
             return;

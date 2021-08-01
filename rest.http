@@ -16,7 +16,7 @@ Content-Type:application/json
 Accept:application/json
 
 {
-    "email": "0",
+    "email": "1",
     "user": "admin2",
     "pass": "admin"
 }
