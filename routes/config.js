@@ -5,9 +5,10 @@ import * as pages from '../scripts/pages.js';
 import * as acc from '../scripts/account.js';
 
 // Pages
-router.get('/', pages.homePage);
 router.get('/login', pages.loginPage);
 router.get('/create', pages.createAccountPage);
+
+router.get('/', pages.homePage);
 router.get('/workout', pages.workoutPage);
 router.get('/editor', pages.editorPage)
 
