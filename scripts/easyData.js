@@ -141,14 +141,18 @@ export function updateStats(req, res){
 	    SET bench_max = ?, squat_max = ?, deadlift_max = ?
 	    WHERE user_id IN(SELECT id FROM users WHERE username = ?);`;
     
-    if(req.session.loggedIn)
-        DB.query(sqlQuery, [req.body.bench, req.body.squat, req.body.deadlift, req.session.username], (err, result)=>{
-            if(err) throw err;
-            else {
-                req.session.bm = req.body.bench;
-                req.session.sm = req.body.squat;
-                req.session.dm = req.body.deadlift;
-                res.redirect('/');
-            }
-        })
+    if(req.session.loggedIn){
+        if(req.body.bench < 1000 && req.body.squat < 1000 && req.body.deadlift < 1000)
+            DB.query(sqlQuery, [req.body.bench, req.body.squat, req.body.deadlift, req.session.username], (err, result)=>{
+                if(err) throw err;
+                else {
+                    req.session.bm = req.body.bench;
+                    req.session.sm = req.body.squat;
+                    req.session.dm = req.body.deadlift;
+                    res.redirect('/');
+                }
+            });
+        else res.redirect('/');
+    }
+        
 }

@@ -18,11 +18,11 @@
     <legend>Your Personal Best</legend>
     <form action="/updatestats" method="POST">
     <label for="bench">Bench:</label>
-    <input type="number" name="bench" value="<%= userdata.b %>">
+    <input type="number" name="bench" value="<%= userdata.b %>" max="999">
     <label for="squat">Squat:</label>
-    <input type="number" name="squat" value="<%= userdata.s %>">
+    <input type="number" name="squat" value="<%= userdata.s %>" max="999">
     <label for="deadlift">Deadlift:</label>
-    <input type="number" name="deadlift" value="<%= userdata.d %>">
+    <input type="number" name="deadlift" value="<%= userdata.d %>" max="999">
     <input type="submit" value="Update Max">
     </form>
     <h4>Bench: <%= userdata.b %> Squat: <%= userdata.s %> Deadlift: <%= userdata.d %></h4>
